@@ -9,6 +9,7 @@ You will need to create 2 micro services at minimum. API & Worker.
 This service will need to allow a person to submit data to an endpoint, one of the endpoints should allow someone to submit a JSON item `{"item":"foo"}` to it like below:
 
 > /save
+
 ``` bash
 curl -d '{"item":"foo"}' -H "Content-Type: application/json" -X POST http://localhost:3000/save
 ```
@@ -18,6 +19,7 @@ Multiple submits of the same value **IS ALLOWED**, but the system should keep tr
 The other endpoint should a person to read the amount of times a value was submitted.
 
 >/status/{item}
+
 ```bash
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" http://localhost:3000/status/foo
 ```
