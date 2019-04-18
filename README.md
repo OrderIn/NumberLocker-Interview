@@ -60,8 +60,6 @@ This can be achieved using a CRON or manual loop of sorts... but I'd suggest usi
       * You could have a 3rd linking service that acts as a state manager
         *  E.g. a service that allows you to read/write in memory items to it.
 
-> Dont worry about security between the apps
-
 <h2>Finally</h2>
 The goal of this is not nessicarily to have a fully function application eco system, but I'd like to see how you structure & write code and if you'll be able to work comfrotably within our code bases.
 
