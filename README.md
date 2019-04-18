@@ -6,7 +6,7 @@ You will need to create 2 micro services at minimum. API & Worker.
 
 <h3>API.</h3>
 
-This service will need to allow a person to submit data to an endpoint, one of the endpoints should allow someone to submit a JSON item `{"item":"foo"}` to it like below:
+This service will need to allow a person to interact with the data model via API calls. One of the endpoints should allow someone to submit a JSON item `{"item":"foo"}` to it like below:
 
 > /save
 
@@ -14,9 +14,9 @@ This service will need to allow a person to submit data to an endpoint, one of t
 curl -d '{"item":"foo"}' -H "Content-Type: application/json" -X POST http://localhost:3000/save
 ```
 
-Multiple submits of the same value **IS ALLOWED**, but the system should keep track of them.
+Multiple submits of the same value **IS ALLOWED**, **only if** the record **IS OPEN**, and the system should keep track of their submit count.
 
-The other endpoint should a person to read the amount of times a value was submitted.
+The other endpoint should allow a person to read the amount of times a value was submitted as well as their current status.
 
 >/status/{item}
 
@@ -35,9 +35,9 @@ where
 
 
 <h3>Worker</h3>
-This service should after 1 minute, flag the record as processed, after which, IF we try to submit to the 1st API service again, it should return a status code `400` bad request. 
+This service should after 1 minute, flag the record as processed, after which, IF a person tries to submit to the API `/save` endpoint again, it should return a status code `400` bad request.
 
-This can be achieved using a CRON or manual loop of sorts... but I'd suggest using something like Hangfire or cronos. Cheatcode: the cron for every minute is: `* * * * *`
+The locking service can be sceduled uing a CRON or manual loop of sorts... but I'd suggest using something like Hangfire or cronos. Cheatcode: the cron for every minute is: `* * * * *`
 
 -----
 
