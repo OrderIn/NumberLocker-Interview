@@ -35,7 +35,7 @@ where
 
 
 <h3>Worker</h3>
-This service should after 1 minute, flag the record as processed, after which, IF a person tries to submit to the API `/save` endpoint again, it should return a status code `400` bad request.
+This service should after 1 minute, flag the record as processed, after which, IF a person tries to submit to the API `/save`  endpoint again, it should return a status code `400` bad request.
 
 The locking service can be sceduled uing a CRON or manual loop of sorts... but I'd suggest using something like Hangfire or cronos. Cheatcode: the cron for every minute is: `* * * * *`
 
